@@ -32,11 +32,17 @@
     </div>
     <div class="mb-3">
         <label asp-for="ProyectoId" class="form-label"></label>
-        <input asp-for="ProyectoId" class="form-control" />
+        <select asp-for="ProyectoId" class="form-select" asp-items="ViewBag.Proyectos">
+            <option value="">-- Seleccione un proyecto --</option>
+        </select>
+        <span asp-validation-for="ProyectoId" class="text-danger"></span>
     </div>
     <div class="mb-3">
         <label asp-for="UsuarioAsignadoId" class="form-label"></label>
-        <input asp-for="UsuarioAsignadoId" class="form-control" />
+        <select asp-for="UsuarioAsignadoId" class="form-select" asp-items="ViewBag.Usuarios">
+            <option value="">-- Seleccione un usuario --</option>
+        </select>
+        <span asp-validation-for="UsuarioAsignadoId" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
     <a asp-action="Index" class="btn btn-link">Cancelar</a>

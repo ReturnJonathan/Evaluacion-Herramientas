@@ -1,8 +1,75 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<DesafioH.Modelos.Usuario>
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var usuariosCount = Model?.Count() ?? 0;
+    var proyectosCount = ViewBag.ProyectosCount as int? ?? 0;
+    var tareasCount = ViewBag.TareasCount as int? ?? 0;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container my-5">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-3">
+            <h1 class="display-5 fw-bold">Bienvenido a tu gestor de equipo de desarrollo </h1>
+            <p class="col-md-8 fs-4">Aqui tienes un resumen breve de tu equipo de desarrollo</p>
+        </div>
+    </div>
+
+    <div class="row text-center g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Usuarios</h5>
+                    <p class="display-6">@usuariosCount</p>
+                    <a asp-controller="Usuarios" asp-action="Index" class="btn btn-outline-primary">Ver usuarios</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Proyectos</h5>
+                    <p class="display-6">@proyectosCount</p>
+                    <a asp-controller="Proyectos" asp-action="Index" class="btn btn-outline-success">Ver proyectos</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Tareas</h5>
+                    <p class="display-6">@tareasCount</p>
+                    <a asp-controller="Tareas" asp-action="Index" class="btn btn-outline-warning">Ver tareas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Últimos usuarios registrados</h4>
+            <ul class="list-group">
+                @foreach (var u in (Model ?? Enumerable.Empty<DesafioH.Modelos.Usuario>()).Take(5))
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @u.Nombre
+                        <span class="badge bg-primary rounded-pill">@u.Email</span>
+                    </li>
+                }
+            </ul>
+            <a asp-controller="Usuarios" asp-action="Index" class="mt-2 d-block">Ver todos</a>
+        </div>
+        <div class="col-md-6">
+            <h4>Accesos rápidos</h4>
+            <div class="list-group">
+                <a asp-controller="Account" asp-action="Register" class="list-group-item list-group-item-action">Registrar nuevo usuario</a>
+                <a asp-controller="Tareas" asp-action="Create" class="list-group-item list-group-item-action">Crear nueva tarea</a>
+                <a asp-controller="Proyectos" asp-action="Create" class="list-group-item list-group-item-action">Crear nuevo proyecto</a>
+                <a asp-controller="Reportes" asp-action="Index" class="list-group-item list-group-item-action">
+                    Ver reportes
+                </a>
+
+            </div>
+        </div>
+    </div>
 </div>

@@ -24,9 +24,9 @@ namespace DesafioH.Modelos
 
         [Required]
         public Guid ProyectoId { get; set; }
-        public Proyecto Proyecto { get; set; }
+        public Proyecto? Proyecto { get; set; }
 
         public Guid? UsuarioAsignadoId { get; set; }
-        public Usuario UsuarioAsignado { get; set; }
+        public Usuario? UsuarioAsignado { get; set; }
     }
 }

@@ -1,48 +1,59 @@
-﻿@model DesafioH.App.Models.Reports.ReportsIndexVM
+﻿@using DesafioH.Modelos;
+
+@model DesafioH.App.Models.Reports.ReportsIndexVM
+
 @{
-    ViewData["Title"] = "Reportes";
+    ViewData["Title"] = "Reportes de Tareas";
 }
 
-<div class="container-fluid animate-fade-in">
-    <div class="row mb-5">
-        <div class="col-12">
-            <div class="card bg-gradient text-white shadow-xl rounded-4 overflow-hidden position-relative"
-                 style="min-height: 300px;">
-                <div class="card-body d-flex align-items-center p-5">
-                    <div class="row w-100 align-items-center">
-                        <div class="col-lg-8">
-                            <h1 class="display-3 fw-black mb-3 text-glow">
-                                <i class="fas fa-music me-3"></i>Reportes
-                            </h1>
-                            <p class="lead mb-4 fs-4">
-                                Realiza tus reportes
-                            </p>
+<h1>@ViewData["Title"]</h1>
 
-                            <!-- Formulario de búsqueda mejorado -->
-                            <form method="get" asp-action="Index" class="mb-0">
-                                <div class="input-group input-group-lg shadow-lg" style="max-width: 600px;">
-                                    <span class="input-group-text bg-white border-0">
-                                        <i class="fas fa-search text-muted"></i>
-                                    </span>
-                                    <input type="text" name="q" value="@Model.Query"
-                                           class="form-control bg-white border-0 text-dark"
-                                           placeholder="¿Qué quieres escuchar hoy?" />
-                                    <button class="btn btn-dark px-4" type="submit">
-                                        <i class="fas fa-search me-2"></i>Buscar
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-lg-4 text-center d-none d-lg-block">
-                            <div class="position-relative">
-                                <i class="fas fa-compact-disc fa-10x opacity-25 animate-pulse"></i>
-                                <div class="position-absolute top-50 start-50 translate-middle">
-                                    <i class="fas fa-play fa-3x text-white"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<form method="get" class="row gx-3 gy-2 align-items-end mb-4">
+    <div class="col-auto">
+        <label asp-for="Query" class="form-label">Buscar</label>
+        <input asp-for="Query" class="form-control" />
     </div>
+    <div class="col-auto">
+        <label asp-for="Estado" class="form-label">Estado</label>
+        <select asp-for="Estado" class="form-select" asp-items="Html.GetEnumSelectList<EstadoTarea>()">
+            <option value="">Todos</option>
+        </select>
+    </div>
+    <div class="col-auto">
+        <label asp-for="Prioridad" class="form-label">Prioridad</label>
+        <input asp-for="Prioridad" type="number" class="form-control" />
+    </div>
+    <div class="col-auto">
+        <label asp-for="Desde" class="form-label">Desde</label>
+        <input asp-for="Desde" type="date" class="form-control" />
+    </div>
+    <div class="col-auto">
+        <label asp-for="Hasta" class="form-label">Hasta</label>
+        <input asp-for="Hasta" type="date" class="form-control" />
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Estado</th>
+            <th>Prioridad</th>
+            <th>Creación</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model.Tareas)
+        {
+            <tr>
+                <td>@t.Titulo</td>
+                <td>@t.Estado</td>
+                <td>@t.Prioridad</td>
+                <td>@t.FechaCreacion.ToString("yyyy-MM-dd")</td>
+            </tr>
+        }
+    </tbody>
+</table>
