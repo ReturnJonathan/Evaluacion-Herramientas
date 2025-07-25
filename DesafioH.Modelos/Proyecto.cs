@@ -17,6 +17,6 @@ namespace DesafioH.Modelos
 
         public DateTime FechaCreacion { get; set; } = DateTime.UtcNow;
 
-        public ICollection<Tarea> Tareas { get; set; } = new List<Tarea>();
+        public ICollection<Tarea>? Tareas { get; set; } = new List<Tarea>();
     }
 }

@@ -4,76 +4,32 @@
     ViewData["Title"] = "Registro";
 }
 
-<!-- Página de registro estilo Spotify -->
-<div class="min-vh-100 d-flex align-items-center justify-content-center py-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-5">
-                <!-- Card de registro -->
-                <div class="card bg-dark text-white border-0 shadow-lg rounded-3">
-                    <div class="card-body p-5">
-                        <!-- Logo y título -->
-                        <div class="text-center mb-4">
-                            <h2 class="text-success fw-bold mb-2">Prueba</h2>
-                            <h4 class="fw-bold mb-2">Crear cuenta gratis</h4>
-                            <p class="text-white-50">Únete a millones de usuarios</p>
-                        </div>
+<h1>@ViewData["Title"]</h1>
 
-                        <!-- Formulario de registro -->
-                        <form asp-action="RegisterUser" method="post" enctype="multipart/form-data">
-                            <div asp-validation-summary="ModelOnly" class="alert alert-danger rounded-3 mb-4"></div>
-
-                            <div class="mb-3">
-                                <label asp-for="Nombre" class="form-label fw-bold">Nombre</label>
-                                <input asp-for="Nombre" type="text" class="form-control form-control-lg bg-dark text-white border-secondary rounded-3"
-                                       placeholder="Tu Nombre" />
-                                <span asp-validation-for="Nombre" class="text-danger small"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label asp-for="Email" class="form-label fw-bold">Correo electrónico</label>
-                                <input asp-for="Email" type="email" class="form-control form-control-lg bg-dark text-white border-secondary rounded-3"
-                                       placeholder="tu@email.com" />
-                                <span asp-validation-for="Email" class="text-danger small"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label asp-for="Password" class="form-label fw-bold">Contraseña</label>
-                                <input asp-for="Password" type="password" class="form-control form-control-lg bg-dark text-white border-secondary rounded-3"
-                                       placeholder="Mínimo 6 caracteres" />
-                                <span asp-validation-for="Password" class="text-danger small"></span>
-                            </div>
-
-                            <div class="mb-3">
-                                <label asp-for="ConfirmPassword" class="form-label fw-bold">Confirmar contraseña</label>
-                                <input asp-for="ConfirmPassword" type="password" class="form-control form-control-lg bg-dark text-white border-secondary rounded-3"
-                                       placeholder="Repite tu contraseña" />
-                                <span asp-validation-for="ConfirmPassword" class="text-danger small"></span>
-                            </div>
-
-                            <div class="d-grid mb-4">
-                                <button type="submit" class="btn btn-success btn-lg rounded-pill fw-bold">
-                                    Registrar usuario
-                                </button>
-                            </div>
-                        </form>
-
-                        <!-- Enlaces adicionales -->
-                        <div class="text-center">
-                            <hr class="border-secondary my-4">
-                            <p class="text-white-50 mb-0">
-                                ¿Ya tienes cuenta?
-                                <a asp-action="Login" class="text-success text-decoration-none fw-bold">
-                                    Inicia sesión
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<form asp-action="Register" method="post">
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
     </div>
-</div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword" class="form-label"></label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+    <a asp-action="Login" class="btn btn-link">¿Ya tienes cuenta? Inicia sesión</a>
+</form>
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />

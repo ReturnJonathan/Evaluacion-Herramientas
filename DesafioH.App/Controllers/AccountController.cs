@@ -31,7 +31,7 @@ namespace DesafioH.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            var usuarios = await _api.GetFromJsonAsync<List<Usuario>>("/api/usuarios");
+            var usuarios = await _api.GetFromJsonAsync<List<Usuario>>("api/usuarios");
             if (usuarios.Any(u => u.Email.Equals(model.Email, StringComparison.OrdinalIgnoreCase)))
             {
                 ModelState.AddModelError(nameof(model.Email), "Ya existe un usuario con ese email.");
@@ -46,7 +46,7 @@ namespace DesafioH.Controllers
                 PasswordHash = model.Password
             };
 
-            var resp = await _api.PostAsJsonAsync("/api/usuarios", nuevo);
+            var resp = await _api.PostAsJsonAsync("api/usuarios", nuevo);
             return resp.IsSuccessStatusCode
                 ? RedirectToAction(nameof(Login))
                 : View(model);

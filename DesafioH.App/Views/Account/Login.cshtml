@@ -1,5 +1,27 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model DesafioH.App.Models.Auth.LoginVM
+
 @{
+    ViewData["Title"] = "Iniciar sesión";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Login" method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Entrar</button>
+    <a asp-action="Register" class="btn btn-link">¿No tienes cuenta? Regístrate</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 }

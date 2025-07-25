@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DesafioH.Modelos.Usuario>
+
+@{
+    ViewData["Title"] = "Listado de Usuarios";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nuevo Usuario</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var u in Model)
+        {
+            <tr>
+                <td>@u.Nombre</td>
+                <td>@u.Email</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@u.Id">Detalles</a> |
+                    <a asp-action="Edit" asp-route-id="@u.Id">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@u.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

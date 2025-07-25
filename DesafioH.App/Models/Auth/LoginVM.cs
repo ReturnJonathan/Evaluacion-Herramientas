@@ -10,5 +10,7 @@ namespace DesafioH.App.Models.Auth
 
         [Required]
         public string Password { get; set; } = string.Empty;
+        public string? ReturnUrl { get; set; }
+
     }
 }

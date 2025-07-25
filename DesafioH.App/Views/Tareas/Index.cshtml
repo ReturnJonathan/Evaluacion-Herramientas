@@ -1,0 +1,41 @@
+﻿@model IEnumerable<DesafioH.Modelos.Tarea>
+
+@{
+    ViewData["Title"] = "Listado de Tareas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Nueva Tarea</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Estado</th>
+            <th>Prioridad</th>
+            <th>ProyectoId</th>
+            <th>UsuarioAsignadoId</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Titulo</td>
+                <td>@t.Estado</td>
+                <td>@t.Prioridad</td>
+                <td>@t.ProyectoId</td>
+                <td>@t.UsuarioAsignadoId</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@t.Id">Detalles</a> |
+                    <a asp-action="Edit" asp-route-id="@t.Id">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@t.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
